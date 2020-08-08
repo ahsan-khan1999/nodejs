@@ -5,12 +5,12 @@ function cal(l,b){
             console.log(error.message);
         }
         else{
-            console.log('perimeter is '+ rect.perimeter(l,b))
-            console.log('Area is '+ rect.area(l,b))
+            console.log('perimeter is '+ rect.perimeter())
+            console.log('Area is '+ rect.area())
         }
     })
-
+    console.log('This statement is after the call of rect funct')
     
 }
 
-cal(0,8)
+cal(2,8)
