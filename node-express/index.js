@@ -2,25 +2,17 @@ const express = require('express')
 const http = require('http')
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
+const dishRouter = require('./routes/route')
+const promotionRoute = require('./routes/promotionRoute')
+const leaderRoute = require('./routes/leaderRoute')
 
 const app = express();
 app.use(morgan('dev'))
 app.use(bodyParser.json());
 
-app.all('/dishes' , (req,res,next) => {
-    res.statusCode = 200
-    res.setHeader('Content_Types', 'text/plain');
-    next();
-})
-
-app.get('/dishes' ,( req,res,next ) => {
-    res.end('Get Req is here')
-});
-
-app.post('/dishes' , (req , res, next) => {
-    res.end('Name attach in req is '+ req.body.email);
-})
-
+app.use('/dishes' ,dishRouter);
+app.use('/promotions',promotionRoute);
+app.use('/leaders',leaderRoute);
 app.use(express.static(__dirname +'/public'));
 app.use((req,res,next) => {
     console.log(req.header);
